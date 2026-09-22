@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verdant Brew — Organic Coffee & Artisan Pastries</title>
+  <meta name="description" content="Verdant Brew is a certified organic coffee roastery. Single-origin beans, small-batch roasting, and fresh artisan pastries baked daily.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,400;9..144,0,600;9..144,0,700;9..144,1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☕</text></svg>">
+</head>
+<body>
+
+  <!-- Announcement -->
+  <div class="announcement">
+    <p>🌿 Free carbon-neutral shipping over $50 &nbsp;•&nbsp; Certified USDA Organic &nbsp;•&nbsp; Fresh pastries daily from 7am</p>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header" id="top">
+    <div class="header-inner">
+      <a href="#top" class="logo" aria-label="Verdant Brew home">
+        <span class="logo-mark">☕</span>
+        <span class="logo-text">Verdant <em>Brew</em><small>ORGANIC COFFEE ROASTERY</small></span>
+      </a>
+      <nav class="main-nav" id="mainNav" aria-label="Primary">
+        <a href="#shop">Shop Coffee</a>
+        <a href="#pour">The Pour</a>
+        <a href="#pastries">Pastries</a>
+        <a href="#story">Our Farm</a>
+        <a href="#subscriptions">Subscriptions</a>
+        <a href="#visit">Visit</a>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-btn" id="searchBtn" aria-label="Search">🔍</button>
+        <button class="cart-btn" id="cartOpen" aria-label="Open cart">
+          🧺 <span>Cart</span> <span class="cart-count" id="cartCount">0</span>
+        </button>
+        <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">☰</button>
+      </div>
+    </div>
+    <div class="search-bar" id="searchBar" hidden>
+      <input type="search" id="searchInput" placeholder="Search Ethiopian Yirgacheffe, croissant, oat latte…" aria-label="Search products">
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="pill-row">
+          <span class="pill">🌱 USDA Organic Certified</span>
+          <span class="pill light">☀️ Roasted this week</span>
+        </div>
+        <h1>Grown in shade.<br><em>Roasted with care.</em><br>Poured with love.</h1>
+        <p class="lede">Single-origin, shade-grown beans from 12 family farms. Small-batch roasted in-house and paired with slow-fermented pastries baked every morning.</p>
+        <div class="hero-cta">
+          <a href="#shop" class="btn btn-dark">Shop Organic Beans</a>
+          <a href="#pastries" class="btn btn-light">Order Fresh Pastries 🥐</a>
+        </div>
+        <div class="hero-stats">
+          <div><strong>100%</strong><span>organic &<br>fair-trade</span></div>
+          <div><strong>12</strong><span>family<br>farms</span></div>
+          <div><strong>48h</strong><span>farm to<br>roast</span></div>
+          <div><strong>4.9★</strong><span>12k happy<br>regulars</span></div>
+        </div>
+      </div>
+
+      <!-- COFFEE POUR ANIMATION -->
+      <div class="pour-card" id="pour">
+        <div class="pour-card-head">
+          <span class="live-dot"></span>
+          <span>LIVE BREW — Chemex Pour-Over</span>
+          <span class="pour-timer" id="pourTimer">0:00</span>
+        </div>
+
+        <div class="pour-scene" id="pourScene" role="img" aria-label="Animation of coffee being poured from a kettle into a cup">
+          <div class="sun"></div>
+          <div class="leaves" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+
+          <!-- Kettle -->
+          <div class="kettle-wrap">
+            <div class="kettle">
+              <div class="kettle-body"></div>
+              <div class="kettle-spout"></div>
+              <div class="kettle-handle"></div>
+              <div class="kettle-lid"></div>
+            </div>
+          </div>
+
+          <!-- Stream -->
+          <div class="stream" id="pourStream"></div>
+          <div class="splash"><span></span><span></span><span></span></div>
+
+          <!-- Dripper + Cup -->
+          <div class="dripper">
+            <div class="dripper-cone"></div>
+            <div class="dripper-base"></div>
+          </div>
+          <div class="cup-wrap">
+            <div class="steam" aria-hidden="true"><span></span><span></span><span></span></div>
+            <div class="cup">
+              <div class="coffee-fill" id="coffeeFill"></div>
+              <div class="cup-shine"></div>
+              <div class="cup-logo">VB</div>
+            </div>
+            <div class="cup-handle"></div>
+            <div class="saucer"></div>
+            <div class="beans" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+          </div>
+
+          <div class="pour-progress">
+            <div class="pour-progress-fill" id="pourProgressFill"></div>
+          </div>
+        </div>
+
+        <div class="pour-controls">
+          <div class="strength">
+            <label for="strength">Brew strength</label>
+            <input type="range" id="strength" min="1" max="3" value="2" step="1">
+            <span id="strengthLabel">Balanced</span>
+          </div>
+          <button class="btn btn-dark btn-small" id="pourBtn">↻ Pour Again</button>
+        </div>
+        <p class="pour-caption">Watch: gooseneck kettle → blooming grounds → slow spiral pour. Real brew time 3:30. Ours loops every 8s.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Marquee -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Shade-Grown 🌱</span><span>•</span><span>Small-Batch Roasted 🔥</span><span>•</span><span>Compostable Bags ♻️</span><span>•</span><span>Baked Fresh Daily 🥐</span><span>•</span><span>Fair-Trade Certified 🤝</span><span>•</span>
+      <span>Shade-Grown 🌱</span><span>•</span><span>Small-Batch Roasted 🔥</span><span>•</span><span>Compostable Bags ♻️</span><span>•</span><span>Baked Fresh Daily 🥐</span><span>•</span><span>Fair-Trade Certified 🤝</span><span>•</span>
+    </div>
+  </div>
+
+  <!-- Values -->
+  <section class="values">
+    <div class="wrap">
+      <div class="value-grid">
+        <div class="value"><div class="value-icon">🔬</div><h3>Meticulous Quality</h3><p>Q-graded 86+ lots only. Cupped 3x before release.</p></div>
+        <div class="value"><div class="value-icon">🤝</div><h3>Ethically Sourced</h3><p>2x fair-trade price paid directly to 12 farms.</p></div>
+        <div class="value"><div class="value-icon">🔥</div><h3>Small-Batch Roasting</h3><p>12kg batches, roasted Thursday, shipped Friday.</p></div>
+        <div class="value"><div class="value-icon">📦</div><h3>Custom Subscription</h3><p>Pause anytime. Compostable bags, carbon-neutral.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Shop Coffee -->
+  <section class="section" id="shop">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Our best sellers</p>
+          <h2>Organic beans, roasted this week</h2>
+        </div>
+        <div class="filter-row" role="tablist" aria-label="Filter coffee">
+          <button class="chip active" data-filter="all">All</button>
+          <button class="chip" data-filter="light">Light</button>
+          <button class="chip" data-filter="medium">Medium</button>
+          <button class="chip" data-filter="dark">Dark</button>
+        </div>
+      </div>
+      <div class="product-grid" id="coffeeGrid"><!-- rendered by JS --></div>
+    </div>
+  </section>
+
+  <!-- Video / Story -->
+  <section class="story" id="story">
+    <div class="wrap story-grid">
+      <div class="story-media">
+        <div class="video-frame">
+          <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1442512595331-e89e73853f31?q=80&w=1200&auto=format&fit=crop" preload="metadata">
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-pouring-milk-into-a-cup-of-coffee-4258-large.mp4" type="video/mp4">
+            <source src="https://videos.pexels.com/video-files/4820045/4820045-hd_1920_1080_25fps.mp4" type="video/mp4">
+          </video>
+          <div class="video-badge">▶ Farm film — 2 min</div>
+        </div>
+        <div class="story-photos">
+          <img src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?q=80&w=600&auto=format&fit=crop" alt="Organic coffee beans in burlap" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?q=80&w=600&auto=format&fit=crop" alt="Verdant Brew café interior with plants" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&w=600&auto=format&fit=crop" alt="Fresh brewed coffee with beans" loading="lazy">
+        </div>
+      </div>
+      <div class="story-copy">
+        <p class="eyebrow">Farm to cup</p>
+        <h2>From misty highlands to your morning ritual</h2>
+        <p>Our Huila, Yirgacheffe and Chiapas lots grow under native canopy — no pesticides, no clear-cutting. Birds, bees and soil stay healthy, and the cup tastes wilder: jasmine, apricot, cacao nib.</p>
+        <ul class="check-list">
+          <li>🌳 Shade-grown under 40% canopy cover</li>
+          <li>💧 Washed with recycled mountain water</li>
+          <li>☀️ Sun-dried on raised beds, 12 days</li>
+          <li>📍 Traceable to farm & harvest lot</li>
+        </ul>
+        <div class="story-ctas">
+          <a href="#subscriptions" class="btn btn-dark">Start a Subscription</a>
+          <button class="btn btn-ghost" id="tourBtn">🎥 Watch Roastery Tour</button>
+        </div>
+        <div class="quote">“The Yirgacheffe tastes like a garden after rain. I’ll never go back.” <span>— Maya R., subscriber since 2023</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pastries -->
+  <section class="section pastries" id="pastries">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Bakery — baked at 5am daily</p>
+          <h2>Artisan pastries, order ahead</h2>
+          <p class="muted">Reserve online, pick up warm. Everything organic flour, French butter, no preservatives.</p>
+        </div>
+        <div class="pastry-order-type" role="group" aria-label="Order type">
+          <button class="chip active" data-ordertype="pickup">🏃 Pickup</button>
+          <button class="chip" data-ordertype="delivery">🚲 Delivery</button>
+          <select id="pickupTime" aria-label="Pickup time">
+            <option>Today 8:00 AM</option>
+            <option>Today 10:00 AM</option>
+            <option>Today 12:00 PM</option>
+            <option>Tomorrow 8:00 AM</option>
+          </select>
+        </div>
+      </div>
+      <div class="filter-row">
+        <button class="chip active" data-pastryfilter="all">All</button>
+        <button class="chip" data-pastryfilter="sweet">Sweet</button>
+        <button class="chip" data-pastryfilter="savory">Savory</button>
+        <button class="chip" data-pastryfilter="vegan">Vegan</button>
+      </div>
+      <div class="product-grid" id="pastryGrid"><!-- rendered by JS --></div>
+      <div class="pastry-banner">
+        <div>
+          <h3>🥐 Pastry + Coffee Box — $19</h3>
+          <p>Any large pour-over + any 2 pastries. The commuter ritual. Auto-applied in cart.</p>
+        </div>
+        <button class="btn btn-dark" id="boxBtn">Add Box to Cart</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section class="gallery">
+    <div class="wrap">
+      <p class="eyebrow center">Inside the roastery</p>
+      <h2 class="center">Slow mornings, green corners</h2>
+      <div class="gallery-grid">
+        <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=800&auto=format&fit=crop" alt="Latte art in ceramic cup" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=800&auto=format&fit=crop" alt="Black coffee with beans" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?q=80&w=800&auto=format&fit=crop" alt="Friends in plant-filled café" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=800&auto=format&fit=crop" alt="Espresso extraction" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1498804103079-a6351b050096?q=80&w=800&auto=format&fit=crop" alt="Coffee cup on wooden table with beans" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?q=80&w=800&auto=format&fit=crop" alt="Coffee and notebook morning" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- Subscriptions -->
+  <section class="section subs" id="subscriptions">
+    <div class="wrap">
+      <p class="eyebrow center">Subscriptions</p>
+      <h2 class="center">Never run empty again</h2>
+      <p class="muted center">Pause, swap or cancel anytime. Free shipping, 15% off.</p>
+      <div class="subs-grid">
+        <div class="sub-card">
+          <h3>The Taster</h3><p class="price">$18<span>/mo</span></p>
+          <ul><li>1 × 250g bag / month</li><li>Rotating single origin</li><li>Free brew guide</li></ul>
+          <button class="btn btn-ghost sub-btn" data-plan="The Taster — $18/mo">Choose Taster</button>
+        </div>
+        <div class="sub-card featured">
+          <span class="flag">Most popular</span>
+          <h3>The Ritual</h3><p class="price">$32<span>/mo</span></p>
+          <ul><li>2 × 250g bags / month</li><li>Early access to micro-lots</li><li>Free pastry monthly</li></ul>
+          <button class="btn btn-dark sub-btn" data-plan="The Ritual — $32/mo">Choose Ritual</button>
+        </div>
+        <div class="sub-card">
+          <h3>The Café</h3><p class="price">$58<span>/mo</span></p>
+          <ul><li>4 × 250g bags / month</li><li>Espresso + filter picks</li><li>Priority roastery events</li></ul>
+          <button class="btn btn-ghost sub-btn" data-plan="The Café — $58/mo">Choose Café</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews -->
+  <section class="reviews">
+    <div class="wrap reviews-grid">
+      <div class="review"><p>★★★★★</p><p>“Croissant shattered perfectly, Yirgacheffe sang. Best breakfast in town.”</p><span>— Daniel O.</span></div>
+      <div class="review"><p>★★★★★</p><p>“Subscription is flawless. Beans arrive 2 days off roast, every time.”</p><span>— Priya S.</span></div>
+      <div class="review"><p>★★★★★</p><p>“Vegan banana bread + oat flat white = my whole personality now.”</p><span>— Lena K.</span></div>
+    </div>
+  </section>
+
+  <!-- Visit / Newsletter -->
+  <section class="visit" id="visit">
+    <div class="wrap visit-grid">
+      <div>
+        <p class="eyebrow">Visit us</p>
+        <h2>Green corners, warm cups</h2>
+        <p>📍 14 Leaf Lane, Botanical District<br>🕖 Mon–Fri 7am–6pm • Sat–Sun 8am–5pm<br>📞 (555) 014-2026</p>
+        <img class="map-img" src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1000&auto=format&fit=crop" alt="Café storefront" loading="lazy">
+      </div>
+      <div class="newsletter">
+        <h3>Get 15% off your first bag</h3>
+        <p>Slow letters, monthly. New harvests, recipes, no spam.</p>
+        <form id="newsForm">
+          <input type="email" id="newsEmail" placeholder="you@example.com" required aria-label="Email">
+          <button class="btn btn-dark" type="submit">Join</button>
+        </form>
+        <p class="tiny">By joining you agree to our privacy policy.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap foot-grid">
+      <div><strong>Verdant Brew</strong><p>Certified organic roastery & bakery.<br>© 2026 Verdant Brew Co.</p></div>
+      <div><strong>Shop</strong><br><a href="#shop">Coffee beans</a><br><a href="#pastries">Pastries</a><br><a href="#subscriptions">Subscriptions</a></div>
+      <div><strong>Company</strong><br><a href="#story">Our farms</a><br><a href="#visit">Locations</a><br><a href="#top">Back to top ↑</a></div>
+      <div><strong>Follow</strong><br><a href="https://www.instagram.com/codewithfavour/" target="_blank" rel="noopener">Instagram</a><br><a href="#">TikTok</a><br><a href="#">Spotify — café playlist</a></div>
+    </div>
+    <div class="wrap foot-bottom">
+      <p>Designed by <a href="https://www.instagram.com/codewithfavour/" target="_blank" rel="noopener">Codewithfavour</a></p>
+    </div>
+  </footer>
+
+  <!-- Cart drawer -->
+  <div class="overlay" id="overlay" hidden></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Shopping cart" aria-hidden="true">
+    <div class="cart-head"><h3>Your basket 🧺</h3><button id="cartClose" aria-label="Close cart">✕</button></div>
+    <p class="cart-note" id="cartNote">Pastry + coffee box auto-applied at $19 when eligible.</p>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-foot">
+      <div class="row"><span>Subtotal</span><strong id="cartTotal">$0.00</strong></div>
+      <div class="row muted"><span id="shipMsg">Free shipping over $50</span></div>
+      <button class="btn btn-dark full" id="checkoutBtn">Checkout →</button>
+      <button class="btn btn-ghost full" id="continueBtn">Continue browsing</button>
+    </div>
+  </aside>
+
+  <!-- Checkout modal -->
+  <div class="modal" id="checkoutModal" hidden role="dialog" aria-modal="true" aria-label="Checkout">
+    <div class="modal-card">
+      <button class="modal-x" id="modalClose" aria-label="Close">✕</button>
+      <h3>Almost brewing… ☕</h3>
+      <p class="muted" id="modalSummary"></p>
+      <form id="checkoutForm">
+        <input required placeholder="Full name" aria-label="Full name">
+        <input required type="email" placeholder="Email" aria-label="Email">
+        <input required placeholder="Pickup or delivery address" aria-label="Address">
+        <button class="btn btn-dark full" type="submit">Place order</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="javascript/newjavascript.js"></script>
+</body>
+</html>
